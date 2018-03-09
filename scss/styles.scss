@@ -1,18 +1,24 @@
-//variables
-$deepBlue: #032f3e;
-$offWhite: #f8f9fb;
-$sectionHeading: 24px;
+@import "reset";
+@import "variables";
+@import "mixins";
+
+body{
+  font-family: Arial;
+}
 
 #main-nav {
   background: $deepBlue;
   ul{
     width:100%;
-
+    @include clearFix;
   }
   li {
     float:left;
-    width:14%;
+    width:(100% / 6);
     list-style: none;
+    @include mQ(600px){
+      width: 100%;
+    }
   }
   a {
     color: $offWhite;
@@ -20,17 +26,62 @@ $sectionHeading: 24px;
     padding: 16px;
     display: block;
     text-align: center;
+    &:hover {
+        background: lighten($deepBlue, 5);
+    }
   }
 }
 
 
-#main-nav ul:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
 section h1 {
   font-size: $sectionHeading;
   color: deepBlue;
+}
+
+.lead-banner{
+  @include banner;
+  text-align: right;
+}
+
+.lessons-banner {
+  @include banner;
+  li {
+    text-transform: uppercase;
+    font-size: 20px;
+    max-width: 500px;
+    margin: 60x 0;
+  }
+}
+
+#services {
+  margin-bottom: 60px;
+  li {
+    float:left;
+    box-sizing: border-box;
+    text-align: center;
+    width:(100%/3);
+  }
+  img {
+    width: 60%;
+    margin: 20px 20%;
+  }
+
+  a {
+    text-decoration: none;
+    color: $deepBlue;
+    font-weight: bold;
+    &:hover{
+      color: complement($deepBlue);
+    }
+  }
+  ul {
+    @include clearFix;
+  }
+}
+
+#projects li {
+  @include grid(4, 2%) ;
+  img {
+    width: 100%;
+  }
 }
